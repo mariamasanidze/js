@@ -185,11 +185,14 @@ const products = [
  
 ];
 
+  // let cartItem =[];
+  let cartItems = [];
+
   const productPage = document.getElementById("main");
 
 
   products.forEach( (product) => {
-    const {title, price, description, image, rating } = product;
+    const { id,title, price, description, image, rating } = product;
      const singleProduct = document.createElement("div");
      singleProduct.classList.add("product_card");
 
@@ -246,7 +249,7 @@ const products = [
     </div>
     <div class="flex space-x-4 mb-5 text-sm font-medium">
       <div class="flex-auto flex space-x-4 pr-4">
-        <button class="flex-none w-1/2 h-12 uppercase font-medium tracking-wider bg-slate-900 text-white" type="submit">
+        <button class=" buy_now flex-none w-1/2 h-12 uppercase font-medium tracking-wider bg-slate-900 text-white" type="button">
           Buy now
         </button>
         <button class=" add_to_cart flex-none w-1/2 h-12 uppercase font-medium tracking-wider border border-slate-200 text-slate-900" type="button" 
@@ -269,21 +272,52 @@ const products = [
    `;
 
   
-  productPage.appendChild(singleProduct);
+ 
 
   singleProduct.querySelector(".add_to_cart").addEventListener("click", () => {
-    alert("Item added to cart!");
+    addToCart(id);
   });
+  singleProduct.querySelector(".buy_now").addEventListener("click", () => {
+    navigateToProductPage(id);
+  });
+
+  productPage.appendChild(singleProduct);
 });
 
-
-  
-
+const addToCart = (id) => {
+  const product = products.find((product) => product.id === id);
+  cartItems.push(product);
+  // console.log(cartItems);
+};
  
-    const cart = document.getElementById("cart");
+ document.getElementById("cart").addEventListener ("click", () => {
+
+  function navigateToProductPage(id) {
+    
+    addToCart(id);
   
-    cart.addEventListener("click",  () => {
-      document.location.href = `cart.html`;
+    let ids = [];
+    cartItems.forEach((item) => {
+      ids.push(item.id);
     });
+   };
+ }); 
+
+  
+ 
+
+
+ const navigateToProductPage = (id) => {
+  console.log(id);
+  const url = `cart.html?id=${id}`;
+  window.location.href = url;
+ }
+
+
+const cart = document.getElementById("cart");
+  
+cart.addEventListener("click",  () => {
+  document.location.href = "cart.html";
+});
   
 
