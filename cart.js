@@ -3,6 +3,8 @@
 // const parsedItem = JSON.parse(item);
 // console.log(parsedItem);
 
+
+
 const products = [
     {
       id: 1,
@@ -42,8 +44,33 @@ const products = [
     }
   ];
   
-
   const searchParams = new URLSearchParams(window.location.search);
-  const productID = searchParams.get("id"); 
+  const productID = searchParams.get("cart");
+  
   const product = products.find((product) => product.id === parseInt(productID));
-  console.log(product); 
+  const cartArray = productID.split(",").map(Number);
+  console.log(cartArray);
+
+
+
+  // if (productID) {
+  //   const cartArray = productsID.split(",").map(Number);
+  //   console.log(cartArray);
+  // } else {
+  //   console.log("No items in cart.");
+  // }
+  
+
+
+   
+  // const searchParams = new URLSearchParams(window.location.search);
+
+  // const productID = searchParams.get("cart"); 
+
+  // const cartArray = productID.split(",").map(Number);
+  //  console.log(cartArray);
+
+
+
+  // const product = products.find((product) => product.id === parseInt(productID));
+  // console.log(product); 
